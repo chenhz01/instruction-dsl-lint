@@ -4,6 +4,8 @@ A validator for AI instruction templates written in a deliberately tiny DSL — 
 
 **Confidence: High (85%)** that the nine rule codes cover the structural failure modes of this DSL (undeclared/unused/duplicate variables, bad names and types, unknown/circular/over-deep includes, empty templates); **Medium (60%)** that a regex-and-closure design is enough for real template estates — it sees structure, not semantics [estimated].
 
+<p align="center"><img src="docs/demo.gif" alt="demo" width="720"></p>
+
 ## Problem
 
 Teams accumulating hundreds of AI prompt templates render them with string substitution, and the failure mode is always the same one discovered at 2 a.m.: a template references `{{ user_name }}` that nothing declares, or two templates include each other and rendering loops until the process dies. Prompt frameworks ship renderers but almost nothing ships *structural validators* — a GitHub search for prompt-template linters matching this DSL surface found no direct equivalent as of 2026-10-11. The overlooked angle: prompt templates are just text with three constructs, so the entire validation problem is a graph-closure exercise that needs zero dependencies.
